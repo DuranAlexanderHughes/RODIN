@@ -1,0 +1,10 @@
+# Default: normalize text files
+* text=auto
+
+# Force LF for files used in Linux / containers
+*.py  text eol=lf
+*.sh  text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+Dockerfile text eol=lf
