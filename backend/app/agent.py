@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from dataclasses import dataclass, field
+from typing import Annotated, List, Literal, Optional
 
 from langchain.agents import create_agent
 from langchain.tools import tool
@@ -45,6 +46,12 @@ basic_model = ChatOpenAI(model="gpt-4o-mini")
 advanced_model = ChatOpenAI(model="gpt-4o")
 
 @dataclass
+class SourceRef:
+    title: Annotated[str, "Wiki page title the chunk came from."]
+    chunk_index: Annotated[int, "Chunk index within that page (0-based)."]
+    snippet: Annotated[str, "Short excerpt from the retrieved chunk (for UI/debugging)."]
+
+@dataclass
 class bioshock_lore_response:
     """Response schema for retrieved BioShock lore"""
     summary: Annotated[
@@ -75,12 +82,6 @@ class bioshock_lore_response:
         Optional[str],
         "Optional notes about ambiguity, missing info, or why confidence is not high."
     ] = None
-
-@dataclass
-class SourceRef:
-    title: Annotated[str, "Wiki page title the chunk came from."]
-    chunk_index: Annotated[int, "Chunk index within that page (0-based)."]
-    snippet: Annotated[str, "Short excerpt from the retrieved chunk (for UI/debugging)."]
 
 @tool
 def get_bioshock_lore(query: str) -> str:
@@ -150,7 +151,7 @@ if __name__ == "__main__":
         config={"configurable": {"thread_id": "local-test"}},
     )
 
-    structured: LoreAnswer = result["structured_response"]
+    structured: bioshock_lore_response = result["structured_response"]
 
     print("\n--- STRUCTURED RESPONSE ---")
     print("Summary:", structured.summary)
