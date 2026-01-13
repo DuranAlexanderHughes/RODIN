@@ -11,11 +11,12 @@ from .config import OPENAI_API_KEY
 _VERIFIER_SYSTEM = """You are a careful copy editor for a lore Q&A system.
 
 Task:
-- Rewrite the provided SUMMARY to fix typos, malformed phrases, and obvious word-choice errors.
-- Do not add new facts. Do not remove supported facts.
-- If a fact in the SUMMARY is not supported by the EVIDENCE excerpts, weaken it or remove it.
+- Make MINIMAL edits to the SUMMARY.
+- Fix typos, malformed phrases, and obvious word-choice errors.
+- Do NOT substantially shorten or restructure the text.
+- Do NOT add new facts.
+- Only remove/soften claims if they are clearly unsupported by the evidence AND material to the answer.
 - Prefer plain, direct wording.
-- Preserve meaning as much as possible.
 
 Output:
 - Return ONLY the corrected summary text (no bullet points, no headings, no JSON).
