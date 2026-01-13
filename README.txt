@@ -27,8 +27,14 @@ Tentative ideas:
 api.py
 
 - Start the fastapi server via `uvicorn backend.app.api:app --reload` in a seperate CMD terminal
-- navigate to http://127.0.0.1:8000/docs and use the POST /ask Swagger UI dropdown to post a question
+- navigate to http://127.0.0.1:8000/docs and use the POST /ask Swagger UI dropdown to post a question such as `{
+  "user_id": "local",
+  "message": "Who is Andrew Ryan?"
+}
+`
 	- alternatively	a terminal command such as `curl -X POST http://127.0.0.1:8000/ask \
   -H "Content-Type: application/json" \
   -d '{"user_id":"local","message":"Who is Andrew Ryan?"}'
 ` can be used for a similar result.
+
+- .env requires an OPENAI_API_KEY, BACKEND_URL, and DISCORD_BOT_TOKEN

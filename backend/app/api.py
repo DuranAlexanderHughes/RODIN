@@ -7,6 +7,9 @@ from typing import Literal, Optional
 from .agent import build_agent  # do NOT import tools here
 from .agent import bioshock_lore_response as BioShockLoreResponse  # your dataclass
 
+from .verifier import verify_and_polish_summary
+
+
 app = FastAPI(title="RODIN BioShock Lore Agent")
 
 agent = build_agent()
@@ -61,7 +64,23 @@ def ask(req: AskRequest):
         notes=structured.notes,
     )
 
+    # --- Verifier pass (polish summary only) ---
+    evidence = "\n".join(
+        f"[{s.title} | chunk {s.chunk_index}] {s.snippet}"
+        for s in structured_model.sources
+    )
+
+    # 2nd pass that checks work from original agent
+    corrected_summary = verify_and_polish_summary(
+        summary=structured_model.summary,
+        evidence=evidence,
+    )
+
+    # Replace only summary/answer; keep all other structured fields intact
+    structured_model.summary = corrected_summary
+
     return AskResponse(
         answer=structured_model.summary,
         structured=structured_model,
     )
+
