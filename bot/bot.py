@@ -62,7 +62,24 @@ async def call_backend(user_id: str, message: str) -> dict:
 
             return await resp.json()
 
+# verify that backend is running first        
+async def check_backend_health():
+    url = f"{BACKEND_URL}/health"
+    debug_log("Checking backend health:", url)
 
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, timeout=aiohttp.ClientTimeout(total=5)) as resp:
+                if resp.status != 200:
+                    raise RuntimeError(f"Health check returned {resp.status}")
+                data = await resp.json()
+                if data.get("status") != "ok":
+                    raise RuntimeError(f"Unexpected health response: {data}")
+    except Exception as e:
+        raise RuntimeError(f"Backend health check failed: {e}")
+
+
+# reformat sources for discord formatting
 def format_sources(structured: dict, max_sources: int = 5) -> str:
     sources = structured.get("sources", []) or []
     if not sources:
@@ -127,6 +144,15 @@ async def on_ready():
     debug_log("Registered commands:", [c.name for c in bot.commands])
     debug_log("BACKEND_URL:", BACKEND_URL)
     debug_log("Message Content Intent enabled:", intents.message_content)
+
+    # Backend health check
+    try:
+        await check_backend_health()
+        print("Backend health check: OK")
+    except Exception as e:
+        print("WARNING: Backend health check failed!")
+        print(e)
+
 
 
 if __name__ == "__main__":
