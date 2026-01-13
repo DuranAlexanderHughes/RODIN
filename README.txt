@@ -22,4 +22,13 @@ Tentative ideas:
 
 
 - Advanced: Multi-step reasoning?  "Who where the first big daddies to be created?"
-	
+
+
+api.py
+
+- Start the fastapi server via `uvicorn backend.app.api:app --reload` in a seperate CMD terminal
+- navigate to http://127.0.0.1:8000/docs and use the POST /ask Swagger UI dropdown to post a question
+	- alternatively	a terminal command such as `curl -X POST http://127.0.0.1:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":"local","message":"Who is Andrew Ryan?"}'
+` can be used for a similar result.
