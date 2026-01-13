@@ -40,6 +40,10 @@ class AskResponse(BaseModel):
     answer: str
     structured: BioShockLoreResponseModel
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 
 @app.post("/ask", response_model=AskResponse)
 def ask(req: AskRequest):
