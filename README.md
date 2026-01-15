@@ -48,11 +48,11 @@ Discord Bot (!lore command)
 - timeline events
 - cited sources
 - confidence level
-  • Verifier pass to correct typos and wording errors
-  • FastAPI backend for clean service separation
-  • Discord bot integration with embeds
-  • Debug mode and backend health checks
-  • Designed for future multi-domain expansion
+  - Verifier pass to correct typos and wording errors
+  - FastAPI backend for clean service separation
+  - Discord bot integration with embeds
+  - Debug mode and backend health checks
+  - Designed for future multi-domain expansion
 
 ---
 
@@ -92,9 +92,9 @@ RODIN/
 
 Required variables in .env:
 
-OPENAI_API_KEY=sk-...
-DISCORD_BOT_TOKEN=...
-BACKEND_URL=http://127.0.0.1:8000
+- OPENAI_API_KEY=sk-...
+- DISCORD_BOT_TOKEN=...
+- BACKEND_URL=http://127.0.0.1:8000
 
 ---
 
@@ -135,7 +135,12 @@ GET /health
 Returns service health status.
 
 POST /ask
-Accepts a lore question and returns: - summary - structured response - sources - confidence
+Accepts a lore question and returns:
+
+- summary
+- structured response
+- sources
+- confidence
 
 ---
 
@@ -157,24 +162,24 @@ The bot responds with:
 
 ## Design Philosophy
 
-• Explicit boundaries between ingestion, retrieval, reasoning, and interface
-• Structured outputs over free text
-• Grounding through retrieval, not memorization
-• Fail-fast configuration (no silent defaults)
-• Designed for observability and future evaluation
-• Minimal magic, maximum clarity
+- Explicit boundaries between ingestion, retrieval, reasoning, and interface
+- Structured outputs over free text
+- Grounding through retrieval, not memorization
+- Fail-fast configuration (no silent defaults)
+- Designed for observability and future evaluation
+- Minimal magic, maximum clarity
 
 ---
 
 ## Planned Enhancements
 
-• Slash command support (/lore)
-• Retriever score thresholding
-• Canon vs speculation modes
-• Additional vector backends (FAISS, Pinecone)
-• Streaming vectorstore build
-• Evaluation harness (grounding, faithfulness)
-• Multi-domain routing (BioShock, DnD, etc.)
+- Slash command support (/lore)
+- Retriever score thresholding
+- Canon vs speculation modes
+- Additional vector backends (FAISS, Pinecone)
+- Streaming vectorstore build
+- Evaluation harness (grounding, faithfulness)
+- Multi-domain routing (BioShock, DnD, etc.)
 
 ---
 
