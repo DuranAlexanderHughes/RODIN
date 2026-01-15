@@ -14,6 +14,7 @@ multiple vector backends.
 
 ## High-Level Architecture
 
+```
 MediaWiki Dump (BioShock Wiki)
 ↓
 Ingestion + Filtering (articles vs forum/meta)
@@ -29,6 +30,7 @@ OpenAI Agent (structured output + verifier pass)
 FastAPI Backend (/ask, /health)
 ↓
 Discord Bot (!lore command)
+```
 
 ---
 
