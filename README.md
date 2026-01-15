@@ -56,6 +56,7 @@ Discord Bot (!lore command)
 
 ## Project Structure
 
+```
 RODIN/
 ├── backend/
 │ ├── **init**.py
@@ -81,6 +82,7 @@ RODIN/
 ├── .rodin-venv/ # Python virtual environment
 ├── requirements.txt
 └── README.txt
+```
 
 ---
 
