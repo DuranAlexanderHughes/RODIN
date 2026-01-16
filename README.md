@@ -112,6 +112,7 @@ Required variables in .env:
 
 3. Place MediaWiki dump
 
+   TODO: include link of where to download database dump
    backend/data/raw/bioshock_pages_current.xml
 
 4. Build vector store (first run only)
@@ -167,7 +168,6 @@ The bot responds with:
 - Grounding through retrieval, not memorization
 - Fail-fast configuration (no silent defaults)
 - Designed for observability and future evaluation
-- Minimal magic, maximum clarity
 
 ---
 
@@ -175,11 +175,13 @@ The bot responds with:
 
 - Slash command support (/lore)
 - Retriever score thresholding
+- Rejection of irrelevant tasking
 - Canon vs speculation modes
 - Additional vector backends (FAISS, Pinecone)
 - Streaming vectorstore build
 - Evaluation harness (grounding, faithfulness)
 - Multi-domain routing (BioShock, DnD, etc.)
+- Containization via Docker
 
 ---
 
